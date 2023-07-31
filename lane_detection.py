@@ -27,7 +27,8 @@ def draw_lines(img:str, lines:np.array, color:tuple = (0,255,0)):
                     fontScale=1.5,
                     color=(225, 225, 225),
                     thickness=2)
-    return plt.imshow(cv2.cvtColor(img,cv2.COLOR_BGR2RGB))
+    plt.imshow(cv2.cvtColor(img,cv2.COLOR_BGR2RGB))
+    return 0
 
 def get_slopes_intercepts(lines):
     slopes = (lines[:, :, 3] - lines[:, :, 1]) / (lines[:, :, 1] - lines[:, :, 0])
@@ -48,7 +49,7 @@ def detect_lanes(img, lines):
     sort = sorted(zip(lines, slopes, intercepts), key =lambda pair: pair[1])
     return chuck(sort)
 
-def draw_lines(img, lanes):
+def draw_lanes(img, lanes):
     random_color = lambda: list(np.random.random(size=3) * 256)
     for pair in lanes:
         print(pair)
